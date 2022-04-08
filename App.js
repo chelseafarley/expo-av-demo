@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Audio } from 'expo-av';
+import * as Sharing from 'expo-sharing';
 
 export default function App() {
   const [recording, setRecording] = React.useState();
@@ -60,6 +61,7 @@ export default function App() {
         <View key={index} style={styles.row}>
           <Text style={styles.fill}>Recording {index + 1} - {recordingLine.duration}</Text>
           <Button style={styles.button} onPress={() => recordingLine.sound.replayAsync()} title="Play"></Button>
+          <Button style={styles.button} onPress={() => Sharing.shareAsync(recordingLine.file)} title="Share"></Button>
         </View>
       );
     });
